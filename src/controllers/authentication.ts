@@ -2,6 +2,12 @@ import { NextFunction, Request, Response } from "express";
 import { User } from "../models/user";
 import { Err } from "../utils/errors/Err";
 
+export const getSignup = (req: Request, res: Response, next: NextFunction) => {
+  return res.render("auth/signup", {
+    pageTitle: "Signup",
+  });
+};
+
 export const postSignup = async (
   req: Request,
   res: Response,

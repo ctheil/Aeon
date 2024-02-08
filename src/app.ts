@@ -4,10 +4,17 @@ import { users } from "./db/schema";
 import bodyParser from "body-parser";
 import authRouter from "./routes/authentication";
 import { errorController } from "./utils/errors/ErrorController";
+import path from "path";
 
 const port = process.env.PORT || 3000;
 
 const app = express();
+
+app.set("view engine", "pug");
+app.set("views", "views");
+
+const publicDirPath = path.join(__dirname, "../public");
+app.use(express.static(publicDirPath));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
