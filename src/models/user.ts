@@ -14,7 +14,7 @@ export class User {
     this.hashedPassword = hashedPassword;
   }
 
-  static createNewUser(
+  public static createNewUser(
     username: string,
     email: string,
     password: string,

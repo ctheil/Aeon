@@ -1,10 +1,12 @@
 import express from "express";
-import { db } from "./db";
-import { users } from "./db/schema";
 import bodyParser from "body-parser";
 import authRouter from "./routes/authentication";
 import { errorController } from "./utils/errors/ErrorController";
 import path from "path";
+import homeRouter from "./routes/home";
+import session from "express-session";
+import dotenv from "dotenv";
+dotenv.config();
 
 const port = process.env.PORT || 3000;
 
@@ -19,12 +21,19 @@ app.use(express.static(publicDirPath));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", async (req, res, next) => {
-  console.log("Hello world!");
-  const result = await db.select().from(users);
-  res.send(result);
-});
+if (!process.env.SESSION_SECRET) {
+  throw new Error("No session secret found in env.");
+}
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
+
+app.use("/", homeRouter);
 app.use("/v1/auth", authRouter);
 
 app.use(errorController);

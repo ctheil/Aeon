@@ -2,12 +2,17 @@ import { NextFunction, Request, Response } from "express";
 import { User } from "../models/user";
 import { Err } from "../utils/errors/Err";
 
-export const getSignup = (req: Request, res: Response, next: NextFunction) => {
-  return res.render("auth/signup", {
-    pageTitle: "Signup",
+export const getWelcome = (req: Request, res: Response, next: NextFunction) => {
+  return res.render("auth/welcome", {
+    pageTitle: "Welcome",
   });
 };
 
+export const getLogin = (req: Request, res: Response, next: NextFunction) => {
+  return res.render("auth/login", {
+    pageTitle: "Login",
+  });
+};
 export const postSignup = async (
   req: Request,
   res: Response,
@@ -24,12 +29,15 @@ export const postSignup = async (
       error.setStatus(422);
       return next(error);
     }
-    const user = new User(username, email, password);
+    const user = User.createNewUser(username, email, password);
     user.save();
     console.log(user);
 
-    res.send("You're all signed up! Redirecting you to the login page...");
+    // res.send("You're all signed up! Redirecting you to the login page...");
+    console.log("[auth]: signup success");
+    res.redirect("/v1/auth/login");
   } catch (err) {
+    console.error(err);
     const error = new Err(
       "Uh oh... there was a problem signing you up. Don't worry, that's on us. We've been notified and well get right on it.",
     );
