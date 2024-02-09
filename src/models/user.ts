@@ -6,21 +6,29 @@ import { Err } from "../utils/errors/Err";
 export class User {
   username: string;
   email: string;
+  accountType: schema.AccountType;
   private hashedPassword: string;
 
-  constructor(username: string, email: string, hashedPassword: string) {
+  constructor(
+    username: string,
+    email: string,
+    hashedPassword: string,
+    accountType?: schema.AccountType,
+  ) {
     this.username = username;
     this.email = email;
     this.hashedPassword = hashedPassword;
+    this.accountType = accountType || "unassigned";
   }
 
   public static createNewUser(
     username: string,
     email: string,
     password: string,
+    accountType: schema.AccountType,
   ): User {
     const hashed = User.hashPassword(password);
-    return new User(username, email, hashed);
+    return new User(username, email, hashed, accountType);
   }
 
   static async findByEmail(email: string): Promise<User | undefined> {
@@ -28,7 +36,26 @@ export class User {
       where: (user, { eq }) => eq(user.email, email),
     });
     if (!user) return;
-    return new User(user.userName, user.email, user.hashedPassword);
+    return new User(
+      user.userName,
+      user.email,
+      user.hashedPassword,
+      user.accountType,
+    );
+  }
+  static async findByAccountType(
+    type: schema.AccountType,
+  ): Promise<User | undefined> {
+    const user = await db.query.users.findFirst({
+      where: (user, { eq }) => eq(user.accountType, type),
+    });
+    if (!user) return;
+    return new User(
+      user.userName,
+      user.email,
+      user.hashedPassword,
+      user.accountType,
+    );
   }
 
   async save() {
@@ -37,6 +64,7 @@ export class User {
         email: this.email,
         hashedPassword: this.hashedPassword,
         userName: this.username,
+        accountType: this.accountType,
       });
     } catch (err) {
       const error = new Err(`Error saving user: ${err}`);

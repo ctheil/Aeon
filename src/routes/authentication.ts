@@ -4,7 +4,7 @@ import {
   getWelcome,
   postLogin,
   postSignup,
-} from "../controllers/authentication";
+} from "../controllers/auth/authentication";
 import { body } from "express-validator";
 
 const authRouter = express.Router();
