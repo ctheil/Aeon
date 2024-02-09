@@ -3,6 +3,7 @@ import {
   getLogin,
   getWelcome,
   postLogin,
+  postLogout,
   postSignup,
 } from "../controllers/auth/authentication";
 import { body } from "express-validator";
@@ -27,5 +28,6 @@ authRouter.post(
   postSignup,
 );
 authRouter.post("/login", postLogin);
+authRouter.post("/logout", postLogout);
 
 export default authRouter;

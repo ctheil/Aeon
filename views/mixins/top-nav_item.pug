@@ -1,0 +1,5 @@
+mixin item(name, href, currentRoute) 
+    - const isActive = currentRoute === href
+    li
+        a(class=`${!isActive ? "text-gray-500 dark:text-gray-400" : "rounded bg-gray-200 dark:bg-slate-700 p-2 text-indigo-600 dark:text-indigo-100"} transition hover:text-gray-500/75 dark:hover:text-gray-200/75` href=`${href}`) #{name}
+

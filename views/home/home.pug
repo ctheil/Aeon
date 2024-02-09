@@ -1,4 +1,10 @@
 extends ../layout/main.pug
+include ../mixins/top-nav.pug
+include ../mixins/side-bar.pug
 
 block content
-
+    +topNav(currentRoute, user)
+    +sideBar(user, sideBar)
+    main(class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-10" id="dashboard")
+        h1(class="text-6xl font-thin text-indigo-200") Hi #{user.username} 
+     
