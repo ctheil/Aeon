@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { User } from "../models/user";
-import { Err } from "../utils/errors/Err";
+import { User } from "../../models/user";
+import { Err } from "../../utils/errors/Err";
 
 export const getWelcome = (req: Request, res: Response, next: NextFunction) => {
   if (req.session.isAuthenticated) {

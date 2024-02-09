@@ -6,8 +6,7 @@ import path from "path";
 import homeRouter from "./routes/home";
 import session from "express-session";
 import dotenv from "dotenv";
-import { dbPool } from "./db";
-import connectPgSimple from "connect-pg-simple";
+import { store } from "./db/session";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
@@ -29,29 +28,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 /*
  *NOTE: SESSION
+ *BUG: need to determine the best maxAge for the cookie
  */
 if (!process.env.SESSION_SECRET) {
   throw new Error("No session secret found in env.");
 }
-const pgSession = connectPgSimple(session);
 app.use(
   session({
-    store: new pgSession({
-      pool: dbPool,
-      tableName: "user_sessions",
-      createTableIfMissing: true,
-    }),
+    store: store, // from db/session
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-  }),
-);
-
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
   }),
 );
 
