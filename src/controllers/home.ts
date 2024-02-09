@@ -10,6 +10,7 @@ export const getWelcome = async (
   const users = await db.select().from(schema.users).limit(1);
   if (users.length === 0) {
     // !owner exists -> welcome
+    console.log("[server]: No owner -> red to welcome");
     return res.redirect("/v1/auth/welcome");
   }
 

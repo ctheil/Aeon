@@ -33,12 +33,20 @@ export const postSignup = async (
   }
   // user exists?
   try {
-    if (await User.findByEmail(email)) {
-      const error = new Err("That email is already in use");
-      error.setStatus(422);
+    // if (await User.findByEmail(email)) {
+    //   const error = new Err("That email is already in use");
+    //   error.setStatus(422);
+    //   return next(error);
+    // } else
+    console.log(await User.findByAccountType("owner"));
+    if (await User.findByAccountType("owner")) {
+      const error = new Err(
+        "New users must be invited by the account owner. Please reach out and request an invite.",
+      );
+      error.setStatus(403);
       return next(error);
     }
-    const user = User.createNewUser(username, email, password);
+    const user = User.createNewUser(username, email, password, "owner");
     user.save();
     console.log(user);
 

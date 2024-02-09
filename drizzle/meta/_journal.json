@@ -22,6 +22,20 @@
       "when": 1707345119953,
       "tag": "0002_colorful_veda",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1707505544332,
+      "tag": "0003_smart_lorna_dane",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1707506007293,
+      "tag": "0004_ambitious_marten_broadcloak",
+      "breakpoints": true
     }
   ]
 }
