@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { User } from "../../models/user";
 import { Err } from "../../utils/errors/Err";
+import { sendHTMXRedirect } from "../../utils/sendHTMXRedirect";
 
 export const getWelcome = (req: Request, res: Response, next: NextFunction) => {
   if (req.session.isAuthenticated) {
@@ -84,7 +85,10 @@ export const postLogin = async (
       username: user.username,
       accountType: user.accountType,
     };
-    res.redirect("/");
+    // res.setHeader("HX-Redirect", "/");
+    // res.redirect("/");
+    // return res.send();
+    return sendHTMXRedirect(req, res, next, "/");
   } catch (err) {
     const error = new Err(
       "Uh oh... there was a problem logging you in. Don't worry, that's on us. We've been notified and well get right on it.",
