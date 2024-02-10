@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { User } from "../../models/user";
 import { Err } from "../../utils/errors/Err";
+import { sendHTMXRedirect } from "../../utils/sendHTMXRedirect";
 
 export const getWelcome = (req: Request, res: Response, next: NextFunction) => {
   if (req.session.isAuthenticated) {
@@ -33,12 +34,6 @@ export const postSignup = async (
   }
   // user exists?
   try {
-    // if (await User.findByEmail(email)) {
-    //   const error = new Err("That email is already in use");
-    //   error.setStatus(422);
-    //   return next(error);
-    // } else
-    console.log(await User.findByAccountType("owner"));
     if (await User.findByAccountType("owner")) {
       const error = new Err(
         "New users must be invited by the account owner. Please reach out and request an invite.",
@@ -48,9 +43,7 @@ export const postSignup = async (
     }
     const user = User.createNewUser(username, email, password, "owner");
     user.save();
-    console.log(user);
 
-    // res.send("You're all signed up! Redirecting you to the login page...");
     console.log("[auth]: signup success");
     res.redirect("/v1/auth/login");
   } catch (err) {
@@ -63,12 +56,6 @@ export const postSignup = async (
   }
 };
 
-// Enable isAuthenticated as type on req.session
-declare module "express-session" {
-  interface SessionData {
-    isAuthenticated: boolean;
-  }
-}
 export const postLogin = async (
   req: Request,
   res: Response,
@@ -78,24 +65,54 @@ export const postLogin = async (
   if (!email || !password) {
     return res.status(422).send("No credentials provided");
   }
-  console.log(req.session);
   try {
     const user = await User.findByEmail(email);
 
     if (!user) {
-      return res.status(404).send("No user found with that email.");
+      const error = new Err("Invalid email or password");
+      error.setStatus(404);
+      return next(error);
     }
     const comparePassword = user.compareHash(password);
     if (!comparePassword) {
-      return res.status(404).send("Email or password is incorect.");
+      const error = new Err("Invalid email or password");
+      error.setStatus(404);
+      return next(error);
     }
     req.session.isAuthenticated = true;
-    console.log(req.session);
-    res.send(`Welcome ${user.username}`);
+    req.session.user = {
+      email: user.email,
+      username: user.username,
+      accountType: user.accountType,
+    };
+    // res.setHeader("HX-Redirect", "/");
+    // res.redirect("/");
+    // return res.send();
+    return sendHTMXRedirect(req, res, next, "/");
   } catch (err) {
     const error = new Err(
       "Uh oh... there was a problem logging you in. Don't worry, that's on us. We've been notified and well get right on it.",
     );
+    error.setStatus(500);
+    return next(error);
+  }
+};
+
+export const postLogout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    req.session.destroy((err) => {
+      if (err) {
+        throw err;
+      }
+      return res.redirect("/");
+    });
+  } catch (err) {
+    console.warn(err);
+    const error = new Err("Error logging you out.");
     error.setStatus(500);
     return next(error);
   }
