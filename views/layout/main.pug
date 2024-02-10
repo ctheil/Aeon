@@ -1,3 +1,4 @@
+include ../mixins/alerts.pug
 doctype html
 html(lang="en", class="bg-white dark:bg-slate-800 text-slate-900 dark:text-white antialiased leading-tight" )
     head
@@ -7,8 +8,13 @@ html(lang="en", class="bg-white dark:bg-slate-800 text-slate-900 dark:text-white
         title #{pageTitle}
         link(rel="stylesheet", href="/styles/output.css")
         link(rel="stylesheet" href="https://rsms.me/inter/inter.css")
-        // script(src="https://cdn.tailwindcss.com")
+        script(src="/scripts/htmx.js")
+        script(defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js")
         block styles
     body(class="min-h-screen ") 
         block content 
+        
         block foot
+        #error(x-data="{showError: true}" x-show="showError")
+
+        // +error("Error", "error")

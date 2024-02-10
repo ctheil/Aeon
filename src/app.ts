@@ -84,6 +84,7 @@ app.use(doubleCsrfProtection);
  *NOTE: ROUTES
  */
 
+app.get("/htmx", () => console.log("Hello HTMX"));
 app.use("/", homeRouter);
 app.use("/v1/auth", authRouter);
 

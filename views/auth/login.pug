@@ -7,7 +7,7 @@ block content
     
         p(class="mx-auto mt-4 max-w-md text-center text-gray-500 dark:text-gray-300") As the initial administrator, you'll need to set up your account to enable you to customize, manage, and optimize the platform to perfectly fit your organization. 
     
-        form(action="/v1/auth/login" method="POST" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8")
+        form(hx-post="/v1/auth/login" hx-target="#error" method="POST" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8")
             p(class="text-center text-lg font-medium") Login
             div
               label(for="email" class="sr-only") Email

@@ -68,11 +68,15 @@ export const postLogin = async (
     const user = await User.findByEmail(email);
 
     if (!user) {
-      return res.redirect("/v1/auth/login");
+      const error = new Err("Invalid email or password");
+      error.setStatus(404);
+      return next(error);
     }
     const comparePassword = user.compareHash(password);
     if (!comparePassword) {
-      return res.status(404).send("Email or password is incorect.");
+      const error = new Err("Invalid email or password");
+      error.setStatus(404);
+      return next(error);
     }
     req.session.isAuthenticated = true;
     req.session.user = {
