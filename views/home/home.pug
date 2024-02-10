@@ -4,9 +4,9 @@ include ../mixins/side-bar.pug
 
 block content
     div(class="flex")
-        +sideBar(user, sideBar)
+        +sideBar(user, sideBar, csrfToken)
         div(class="flex flex-col ml-16 flex-grow")
-            +topNav(currentRoute, user)
+            +topNav(currentRoute, user, csrfToken)
             main(class="flex-grow mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 mt-10 flex content-start justify-start " id="dashboard")
                 h1(class="text-6xl font-thin text-indigo-200 w-full") Hi #{user.username} 
      

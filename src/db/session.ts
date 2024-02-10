@@ -7,6 +7,7 @@ import * as schema from "./schema";
 declare module "express-session" {
   interface SessionData {
     isAuthenticated: boolean;
+    csrfSecret: string;
     user: {
       username: string;
       email: string;

@@ -1,6 +1,6 @@
 include ./side-bar_menu-item.pug
 include ../icons/settings-cog.pug
-mixin sideBar(user, sideBar)
+mixin sideBar(user, sideBar, csrfToken)
     div( class="flex h-full fixed top-0 left-0 bottom-0  w-16 flex-col justify-between border-e dark:border-slate-700 bg-white dark:bg-slate-900")
         div
             div( class="inline-flex size-16 items-center justify-center group relative" )
@@ -19,6 +19,7 @@ mixin sideBar(user, sideBar)
                             +menuItems(sideBar.inactive)
         div( class="sticky inset-x-0 bottom-0 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-slate-800 p-2" )
             form( action="/v1/auth/logout" method="post" )
+                input(type="hidden" value=`${csrfToken}` name="_csrf")
                 button(
                         type="submit"
                         class="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 hover:text-gray-700 dark:hover:bg-slate-900 dark:hover:text-gray-200"
