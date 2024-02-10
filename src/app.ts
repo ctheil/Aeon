@@ -1,5 +1,4 @@
 import express, { NextFunction, Request, Response } from "express";
-import bodyParser from "body-parser";
 import authRouter from "./routes/authentication";
 import { errorController } from "./utils/errors/ErrorController";
 import path from "path";
@@ -11,7 +10,6 @@ import dashboardRouter from "./routes/dashboard";
 import cookieParser from "cookie-parser";
 import { doubleCsrf } from "csrf-csrf";
 import cors from "cors";
-import { v4 as uuidv4 } from "uuid";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
@@ -76,6 +74,7 @@ app.use(cookieParser(COOKIES_SECRET));
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.locals.isAuthenticated = req.session.isAuthenticated;
+  res.locals.user = req.session.user;
   res.locals.csrfToken = generateToken(req, res);
   next();
 });
