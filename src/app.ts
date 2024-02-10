@@ -7,6 +7,7 @@ import homeRouter from "./routes/home";
 import session from "express-session";
 import dotenv from "dotenv";
 import { store } from "./db/session";
+import dashboardRouter from "./routes/dashboard";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
@@ -49,6 +50,8 @@ app.use(
 
 app.use("/", homeRouter);
 app.use("/v1/auth", authRouter);
+
+app.use("/v1/dashboard", dashboardRouter);
 
 app.use(errorController);
 

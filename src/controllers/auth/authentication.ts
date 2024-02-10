@@ -68,7 +68,7 @@ export const postLogin = async (
     const user = await User.findByEmail(email);
 
     if (!user) {
-      return res.status(404).send("No user found with that email.");
+      return res.redirect("/v1/auth/login");
     }
     const comparePassword = user.compareHash(password);
     if (!comparePassword) {
@@ -80,7 +80,6 @@ export const postLogin = async (
       username: user.username,
       accountType: user.accountType,
     };
-    // res.send(`Welcome ${user.username}`);
     res.redirect("/");
   } catch (err) {
     const error = new Err(
