@@ -13,7 +13,7 @@ mixin menuItems(items)
     each item in items
         a(
         href=`${item.href}`
-        class=`group relative flex justify-center rounded px-2 py-1.5 ${item.active ? "text-l-secondary-600 dark:text-d-secondary-600 bg-l-background-accent dark:bg-d-background-accent" : "text-l-text-accent dark:text-d-text-accent hover:bg-l-background-accent dark:hover:bg-d-background-accent hover:text-l-textdark:hover:text-d-text"}`
+        class=`group relative flex justify-center rounded px-2 py-1.5 ${item.active ? "text-l-s-500 dark:text-d-s-500 bg-l-s-bg dark:bg-d-s-bg" : "text-l-text-a dark:text-d-text-a hover:bg-l-bg-a dark:hover:bg-d-bg-a hover:text-l-text dark:hover:text-d-text"}`
         )
             +menuIcon(item.icon)            
             +menuItemBottom(item.name)
