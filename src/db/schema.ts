@@ -19,7 +19,8 @@ export const accountTypeEnum = pgEnum("account_type", [
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
-  userName: text("user_name").notNull(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
   hashedPassword: text("hashed_password").notNull(),
   accountType: accountTypeEnum("account_type").notNull(),
 });

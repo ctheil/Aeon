@@ -1,0 +1,21 @@
+extends ../layout/main.pug
+include ../mixins/top-nav.pug
+include ../mixins/side-bar.pug
+include ../mixins/alerts.pug
+include ./progress.pug
+
+block content
+    div(class="flex")
+        +sideBar(user, sideBar, csrfToken)
+        div(class="flex flex-col ml-16 flex-grow")
+            +topNav(currentRoute, user, csrfToken)
+            main(hx-get="/v1/dashboard/onboarding?all=true" hx-target=".onboarding" class="flex-grow mx-auto max-w-screen-xl w-full px-4 sm:px-6 lg:px-8 mt-10 flex flex-col content-start justify-start " id="dashboard")
+                div(class="flex justify-between")
+                    div(class="")
+                        h1(class="text-6xl font-thin text-l-text dark:text-d-text w-full") Hi #{user.firstName} 
+                        p(class="text-p mt-5") Welcome to somename! Let's get you started with these steps below
+                    div(id="onboarding-progress" class="")
+                        +progress()                        
+                div(id="onboarding" class="w-full")
+
+

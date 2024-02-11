@@ -25,8 +25,8 @@ export const postSignup = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password) {
+  const { firstName, lastName, email, password } = req.body;
+  if (!firstName || !lastName || !email || !password) {
     return res.status(422).send("No credentials provided");
   }
   if (req.session.isAuthenticated) {
@@ -41,7 +41,13 @@ export const postSignup = async (
       error.setStatus(403);
       return next(error);
     }
-    const user = User.createNewUser(username, email, password, "owner");
+    const user = User.createNewUser(
+      firstName,
+      lastName,
+      email,
+      password,
+      "owner",
+    );
     user.save();
 
     console.log("[auth]: signup success");
@@ -82,7 +88,8 @@ export const postLogin = async (
     req.session.isAuthenticated = true;
     req.session.user = {
       email: user.email,
-      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
       accountType: user.accountType,
     };
     // res.setHeader("HX-Redirect", "/");

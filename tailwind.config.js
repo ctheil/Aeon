@@ -1,5 +1,6 @@
 module.exports = {
   content: ["./views/**/*.pug"],
+  mode: "jit",
   theme: {
     extend: {
       colors: {
