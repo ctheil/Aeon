@@ -14,6 +14,8 @@ export const getWelcome = async (
     return res.redirect("/v1/auth/welcome");
   }
 
+  console.log("Rendering home...");
+
   return res.render("home/home", {
     current: "home",
     user: req.session.user,

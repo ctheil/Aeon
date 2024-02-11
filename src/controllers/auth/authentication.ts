@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { User } from "../../models/user";
 import { Err } from "../../utils/errors/Err";
 import { sendHTMXRedirect } from "../../utils/sendHTMXRedirect";
+import { renderReact } from "../../utils/build/renderReact";
+import LoginPage from "../../../app/auth/LoginPage";
 
 export const getWelcome = (req: Request, res: Response, next: NextFunction) => {
   if (req.session.isAuthenticated) {
@@ -16,8 +18,9 @@ export const getLogin = (req: Request, res: Response, next: NextFunction) => {
   if (req.session.isAuthenticated) {
     return res.redirect("/");
   }
-  return res.render("auth/login", {
-    pageTitle: "Login",
+  console.log("[server]: Rendering react...");
+  return renderReact(req, res, next, LoginPage, "LoginPage", {
+    test: "TESTING!",
   });
 };
 export const postSignup = async (

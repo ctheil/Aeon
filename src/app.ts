@@ -10,6 +10,13 @@ import dashboardRouter from "./routes/dashboard";
 import cookieParser from "cookie-parser";
 import { doubleCsrf } from "csrf-csrf";
 import cors from "cors";
+import { renderReact } from "./utils/build/renderReact";
+
+// import fs from "fs";
+// import * as React from "react";
+// import ReactDOMServer from "react-dom/server";
+// import App from "../views/App";
+
 dotenv.config();
 
 const port = process.env.PORT || 3000;
@@ -30,7 +37,9 @@ app.set("view engine", "pug");
 app.set("views", "views");
 
 const publicDirPath = path.join(__dirname, "../public");
+const distDirPath = path.join(__dirname, "../dist");
 app.use(express.static(publicDirPath));
+app.use(express.static(distDirPath));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -66,7 +75,6 @@ const {
   cookieOptions: { sameSite: false, secure: false, signed: true },
   cookieName: CSRF_COOKIE_NAME,
   getTokenFromRequest: (req) => {
-    console.log("body token", req.body._csrf);
     return req.body._csrf;
   },
 });
@@ -84,7 +92,6 @@ app.use(doubleCsrfProtection);
  *NOTE: ROUTES
  */
 
-app.get("/htmx", () => console.log("Hello HTMX"));
 app.use("/", homeRouter);
 app.use("/v1/auth", authRouter);
 

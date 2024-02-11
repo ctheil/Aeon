@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./views/**/*.pug"],
+  content: ["./views/**/*.pug", "./app/**/*.tsx"],
   mode: "jit",
   theme: {
     extend: {
