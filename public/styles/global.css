@@ -1,0 +1,58 @@
+:root {
+  /* --l-primary-500: #4f46e5; */
+  /* --l-primary-400: #4338ca; */
+  /* --l-primary-300: #3730a3; */
+  /* --l-primary-200: #312e81; */
+  /* --l-primary-100: #312e81; */
+  /**/
+  /* --d-primary-500: #818cf8; */
+  /* --d-primary-400: #a5b4fc; */
+  /* --d-primary-300: #c7d2fe; */
+  /* --d-primary-200: #e0e7ff; */
+  /* --d-primary-100: #e0e7ff; */
+  /**/
+  /* --l-neutral-900: ; */
+  /* --l-neutral-800: ; */
+  /* --l-neutral-700: ; */
+  /* --l-neutral-500: #8f8f8f; */
+  /* --l-neutral-400: #a7a7a7; */
+  /* --l-neutral-300: #bebebe; */
+  /* --l-neutral-200: #d6d6d6; */
+  /* --l-neutral-100: #eeeeee; */
+  /**/
+  /* --d-neutral-900: ; */
+  /* --d-neutral-800: ; */
+  /* --d-neutral-700: ; */
+  /* --d-neutral-600: ; */
+  /* --d-neutral-500: #1e293b; */
+  /* --d-neutral-400: ; */
+  /* --d-neutral-300: ; */
+  /* --d-neutral-200: ; */
+  /* --d-neutral-100: ; */
+
+  --l-primary-600: #210900;
+  --l-primary-500: #403200;
+  --l-primary-400: #6d5b2b;
+
+  --l-secondary-600: #001d42;
+  --l-secondary-500: #32436d;
+  --l-secondary-400: #5f6e9b;
+
+  --l-background: #eeeeee;
+  --l-background-accent: #bcbcbc;
+  --l-text: #0f0f0f;
+  --l-text-accent: #353535;
+
+  --d-primary-600: #cbb87d;
+  --d-primary-500: #ffeaad;
+  --d-primary-400: #ffffdf;
+
+  --d-secondary-600: #9a93cc;
+  --d-secondary-500: #ccc3ff;
+  --d-secondary-400: #fff6ff;
+
+  --d-background: #232323;
+  --d-background-accent: #4b4b4b;
+  --d-text: #ffffff;
+  --d-text-accent: #d7d7d7;
+}

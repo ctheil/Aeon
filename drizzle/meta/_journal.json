@@ -36,6 +36,13 @@
       "when": 1707506007293,
       "tag": "0004_ambitious_marten_broadcloak",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1707600717135,
+      "tag": "0005_sweet_magus",
+      "breakpoints": true
     }
   ]
 }

@@ -3,3 +3,7 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+:root {
+  --primary-400: "#cfb87d";
+}
