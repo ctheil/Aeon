@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { db } from "../db";
 import * as schema from "../db/schema";
+import HomePage from "../../app/home/HomePage";
+import { renderReact } from "../utils/build/renderReact";
 
 export const getWelcome = async (
   req: Request,
@@ -15,27 +17,5 @@ export const getWelcome = async (
   }
 
   console.log("Rendering home...");
-
-  return res.render("home/home", {
-    current: "home",
-    user: req.session.user,
-    currentRoute: "/",
-    sideBar: {
-      active: {
-        name: "Home",
-        href: "/v1/admin/dashboard",
-        active: true,
-        icon: "homeIcon",
-      },
-      inactive: [
-        {
-          name: "Settings",
-          href: "/v1/admin/dashboard/settings",
-          active: false,
-          icon: "settingsCog",
-        },
-      ],
-    },
-  });
-  // return res.send("Taking you to the admin console...");
+  return renderReact(req, res, next, HomePage, "HomePage", {});
 };

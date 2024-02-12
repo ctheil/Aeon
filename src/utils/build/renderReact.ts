@@ -12,8 +12,11 @@ export interface BaseProps {
     email: string;
   };
   csrfToken: string;
-  isAuthenticated?: boolean;
+  isAuthenticated: boolean;
 }
+type WithRequiredUser<T extends BaseProps> = T & {
+  user: NonNullable<T["user"]>;
+};
 
 export const renderReact = <P extends {}>(
   req: Request,
@@ -22,17 +25,15 @@ export const renderReact = <P extends {}>(
   component: React.FC<BaseProps & P>,
   componentName: string,
   props: P,
+  requiredUser = false,
 ) => {
-  const extendedProps = {
+  let extendedProps = {
     ...props,
-    user: req.session.user,
     isAuthenticated: req.session.isAuthenticated,
     componentName,
     csrfToken: res.locals.csrfToken,
-    children: component,
+    user: req.session.user,
   };
-
-  console.log(extendedProps);
 
   try {
     fs.readFile(
@@ -41,6 +42,13 @@ export const renderReact = <P extends {}>(
       (err, data) => {
         if (err) {
           throw err;
+        }
+
+        if (!extendedProps.user && requiredUser) {
+          const error = new Err("User is required for this view");
+          error.setStatus(500);
+          console.warn(error);
+          throw error;
         }
 
         // Use React.createElement to avoid JSX syntax if TS is causing issues

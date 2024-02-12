@@ -18,10 +18,7 @@ export const getLogin = (req: Request, res: Response, next: NextFunction) => {
   if (req.session.isAuthenticated) {
     return res.redirect("/");
   }
-  console.log("[server]: Rendering react...");
-  return renderReact(req, res, next, LoginPage, "LoginPage", {
-    test: "TESTING!",
-  });
+  return renderReact(req, res, next, LoginPage, "LoginPage", { test: "test" });
 };
 export const postSignup = async (
   req: Request,
