@@ -76,13 +76,13 @@ export type Typography = {
   name: string;
 };
 
-// export const settings = pgTable("settings", {
-//   id: serial("id").primaryKey(),
-//   colors: json("colors").$type<Colors>(),
-//   typography: json("typography").$type<Typography>(),
-//   company: text("company_name"),
-//   onboarding: boolean("onboarding").default(true),
-//   updatedAt: timestamp("updated_at"),
-// });
-//
-// export type Settings = typeof settings.$inferSelect;
+export const settings = pgTable("settings", {
+  id: serial("id").primaryKey(),
+  colors: json("colors").$type<Colors>(),
+  typography: json("typography").$type<Typography>(),
+  company: text("company_name"),
+  onboarding: boolean("onboarding").default(true),
+  updatedAt: timestamp("updated_at"),
+});
+
+export type Settings = typeof settings.$inferSelect;

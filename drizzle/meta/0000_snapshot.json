@@ -1,43 +1,9 @@
 {
-  "id": "c2839447-09f2-4058-b9cd-4cbf0b437cbf",
-  "prevId": "b0f92c76-fe0e-46b2-bf58-bf3d5373693a",
+  "id": "fa5ec419-c62c-4b52-be71-6e8be1799768",
+  "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
   "tables": {
-    "settings": {
-      "name": "settings",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "colors": {
-          "name": "colors",
-          "type": "json",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "typography": {
-          "name": "typography",
-          "type": "json",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "company_name": {
-          "name": "company_name",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "users": {
       "name": "users",
       "schema": "",
@@ -77,6 +43,12 @@
           "type": "account_type",
           "primaryKey": false,
           "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -86,7 +58,9 @@
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": ["email"]
+          "columns": [
+            "email"
+          ]
         }
       }
     }

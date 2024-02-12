@@ -1,6 +1,6 @@
 {
-  "id": "08fe88e6-fbf4-451b-9f1f-7dab674623d7",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "232bebd2-0653-46e1-bc38-ffb016f64c98",
+  "prevId": "fa5ec419-c62c-4b52-be71-6e8be1799768",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -38,6 +38,12 @@
           "primaryKey": false,
           "notNull": false,
           "default": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -84,6 +90,12 @@
           "type": "account_type",
           "primaryKey": false,
           "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -93,7 +105,9 @@
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": ["email"]
+          "columns": [
+            "email"
+          ]
         }
       }
     }

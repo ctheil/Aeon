@@ -5,78 +5,15 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1707343181040,
-      "tag": "0000_tiresome_zaladane",
+      "when": 1707779720897,
+      "tag": "0000_previous_makkari",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "5",
-      "when": 1707343884123,
-      "tag": "0001_pale_sentinel",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1707345119953,
-      "tag": "0002_colorful_veda",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1707505544332,
-      "tag": "0003_smart_lorna_dane",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1707506007293,
-      "tag": "0004_ambitious_marten_broadcloak",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1707600717135,
-      "tag": "0005_sweet_magus",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1707616848755,
-      "tag": "0006_puzzling_lord_tyger",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "5",
-      "when": 1707616966170,
-      "tag": "0007_awesome_maria_hill",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "5",
-      "when": 1707700339339,
-      "tag": "0008_productive_ulik",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "5",
-      "when": 1707779383780,
-      "tag": "0009_boring_the_hand",
-      "breakpoints": true
-    },
-    {
-      "idx": 10,
-      "version": "5",
-      "when": 1707779435903,
-      "tag": "0010_redundant_mantis",
+      "when": 1707779771936,
+      "tag": "0001_aromatic_valeria_richards",
       "breakpoints": true
     }
   ]
