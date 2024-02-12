@@ -1,5 +1,5 @@
 {
-  "id": "2f6b386e-e15d-43ce-a4cf-f6479b73af01",
+  "id": "c2839447-09f2-4058-b9cd-4cbf0b437cbf",
   "prevId": "b0f92c76-fe0e-46b2-bf58-bf3d5373693a",
   "version": "5",
   "dialect": "pg",
@@ -86,9 +86,7 @@
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       }
     }

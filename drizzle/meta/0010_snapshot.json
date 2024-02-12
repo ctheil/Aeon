@@ -1,56 +1,9 @@
 {
-  "id": "0cd0b475-8073-40c9-8708-b561511c429c",
-  "prevId": "1d08a494-ae48-4770-b84a-f1c759935cd8",
+  "id": "e83553e4-cbe0-45ca-b2eb-75a4a2f552f4",
+  "prevId": "08fe88e6-fbf4-451b-9f1f-7dab674623d7",
   "version": "5",
   "dialect": "pg",
   "tables": {
-    "settings": {
-      "name": "settings",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "colors": {
-          "name": "colors",
-          "type": "json",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "typography": {
-          "name": "typography",
-          "type": "json",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "company_name": {
-          "name": "company_name",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "onboarding": {
-          "name": "onboarding",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false,
-          "default": true
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "users": {
       "name": "users",
       "schema": "",

@@ -1,6 +1,6 @@
 {
-  "id": "1d08a494-ae48-4770-b84a-f1c759935cd8",
-  "prevId": "2f6b386e-e15d-43ce-a4cf-f6479b73af01",
+  "id": "68198734-7f31-4bbc-8109-820dbae150b8",
+  "prevId": "08fe88e6-fbf4-451b-9f1f-7dab674623d7",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -26,6 +26,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "company_name": {
+          "name": "company_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
         "onboarding": {
           "name": "onboarding",
           "type": "boolean",
@@ -33,9 +39,9 @@
           "notNull": false,
           "default": true
         },
-        "company_name": {
-          "name": "company_name",
-          "type": "text",
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": false
         }
@@ -84,6 +90,12 @@
           "type": "account_type",
           "primaryKey": false,
           "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
