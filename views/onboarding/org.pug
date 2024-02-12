@@ -1,0 +1,32 @@
+include ../mixins/input.pug
+include ../mixins/form-button.pug
+include ../mixins/csrf.pug
+
+div(class="flex-col w-full h-10")
+    form(hx-post="/v1/dashboard/onboarding/company"  hx-swap="outerHTML" method="POST" class=` ${settings.company ? "bg-emerald-500/20": ""} w-full mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8`)
+        +csrf(csrfToken)
+        h2(class=`text-2xl text-l-text dark:text-d-text relative`) Company Name
+        div(class=`flex gap-1`)
+            div(class="flex-1")
+                +input("company", "Company Name", "text", "Enter your organization's name", settings.company)
+            button(
+                type="submit"
+                class=` block w-auto rounded-lg  px-5 py-3 text-sm font-medium  ${settings.company ? "bg-emerald-500 text-black" : "bg-l-p-bg dark:bg-d-p-bg text-l-p-500 dark:text-d-p-500"}`
+                    ) Update
+    form(hx-post="/v1/dashboard/onboarding/typography"  hx-swap="outerHTML" method="POST" class=` ${settings.typography ? "bg-emerald-500/20": ""} w-full mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8`)
+        +csrf(csrfToken)
+        h2(class=`text-2xl text-l-text dark:text-d-text relative`) Brand Typography
+        p(class=`text-p max-w-prose text-l-text-a dark:text-d-text-a`) Find the font family via Google Fonts, add any weights you might like to.
+        
+        div(class="flex gap-4")
+            p(class=`text-p max-w-prose text-l-text-a dark:text-d-text-a`) Find the 'Use on the web' section and click the @import checkbox and copy the contents between the style tags.
+            +input("link", "Font Family Link", "text", "Enter the @import link from google fonts", settings.typography)
+        div(class="flex gap-4")
+            p(class=`text-p max-w-prose text-l-text-a dark:text-d-text-a`) 
+            +input("family", "Font Family Name", "text", "Enter the name of the Font Family", settings.typography)
+        button(
+                type="submit"
+                class=` block w-auto rounded-lg  px-5 py-3 text-sm font-medium  ${settings.typography ? "bg-emerald-500 text-black" : "bg-l-p-bg dark:bg-d-p-bg text-l-p-500 dark:text-d-p-500"}`
+                    ) Update
+
+

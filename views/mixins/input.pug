@@ -1,0 +1,13 @@
+mixin input(name,friendlyName, type, placeholder, value)
+    div
+        label(for="email" class="sr-only") #{friendlyName}
+        div(class="relative")
+            input(
+                type=`${type}`
+                    name=`${name}`
+                    value=`${value || "" }`
+                  class=`w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm bg-l-bg-a dark:bg-d-bg-a`
+                  placeholder=`${placeholder}`
+                )
+            span(class="absolute inset-y-0 end-0 grid place-content-center px-4")
+

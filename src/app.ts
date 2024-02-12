@@ -76,6 +76,18 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   res.locals.isAuthenticated = req.session.isAuthenticated;
   res.locals.user = req.session.user;
   res.locals.csrfToken = generateToken(req, res);
+  res.locals.sideBar = [
+    {
+      name: "Home",
+      href: "/",
+      icon: "homeIcon",
+    },
+    {
+      name: "Settings",
+      href: "/v1/admin/dashboard/settings",
+      icon: "settingsCog",
+    },
+  ];
   next();
 });
 app.use(doubleCsrfProtection);
