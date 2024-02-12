@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/app.ts",
+    "dev": "nodemon --watch ./src/app.ts --watch ./app/**/*.tsx --ext 'ts, tsx' --exec 'ts-node ./src/app.ts'",
     "migration:generate": "drizzle-kit generate:pg --schema=./src/db/schema.ts",
     "migration:push": "node -r esbuild-register src/db/migrate.ts",
     "migrate": "npm run migration:generate && npm run migration:push",
