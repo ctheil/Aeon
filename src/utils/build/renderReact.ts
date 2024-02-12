@@ -4,6 +4,7 @@ import React, { FunctionComponent } from "react";
 import ReactDOMServer from "react-dom/server";
 import { Err } from "../errors/Err";
 import path from "path";
+import * as schema from "../../db/schema";
 
 export interface BaseProps {
   user?: {
@@ -13,6 +14,7 @@ export interface BaseProps {
   };
   csrfToken: string;
   isAuthenticated: boolean;
+  settings?: schema.Settings;
 }
 type WithRequiredUser<T extends BaseProps> = T & {
   user: NonNullable<T["user"]>;
@@ -33,11 +35,12 @@ export const renderReact = <P extends {}>(
     componentName,
     csrfToken: res.locals.csrfToken,
     user: req.session.user,
+    settings: res.locals.settings,
   };
 
   try {
     fs.readFile(
-      path.resolve("./public/html/index.html"),
+      path.resolve("./dist/bundle/index.html"),
       "utf8",
       (err, data) => {
         if (err) {
@@ -66,7 +69,6 @@ export const renderReact = <P extends {}>(
           '<div id="root"></div>',
           `<div id="root">${reactAppString}</div>`,
         );
-        // console.log("[server]: rendered html:", renderedHtml);
         return res.send(renderedHtml);
       },
     );

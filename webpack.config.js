@@ -1,14 +1,24 @@
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  entry: "./app/index.js", // Change this to your entry file
+  entry: "./src/views/index.js", // Change this to your entry file
   output: {
-    path: path.resolve(__dirname, "dist/scripts"), // Output directory
-    filename: "bundle.js", // Output file
+    path: path.resolve(__dirname, "dist/bundle"), // Output directory
+    filename: "[name].[contenthash].js", // Output file
+    chunkFilename: "[name].[contenthash].js",
+    publicPath: "/bundle/",
   },
-  plugins: [new BundleAnalyzerPlugin()],
+  mode: "production",
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/html/index.html",
+      publicPath: "/bundle/",
+    }),
+    new BundleAnalyzerPlugin(),
+  ],
   module: {
     rules: [
       {
@@ -28,11 +38,11 @@ module.exports = {
       },
     ],
   },
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: "all",
-  //   },
-  // },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".jsx"],
   },

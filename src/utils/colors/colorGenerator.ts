@@ -81,7 +81,7 @@ export const generateNeutralPalette = (
       "darken",
     );
     // use darkened textAccent for normal text color
-    const textColor = chroma(textAccent).darken();
+    const textColor = chroma(textAccent).darken(2);
     return {
       backrground: background.hex(),
       backgroundAccent: bShade.hex(),
@@ -89,7 +89,7 @@ export const generateNeutralPalette = (
       textAccent: textAccent,
     };
   }
-  const bShade = background.brighten();
+  const bShade = background.brighten(2);
   const textAccent = getAccessibleContrast(
     bShade.hex(),
     bShade.hex(),

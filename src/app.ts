@@ -11,6 +11,7 @@ import cookieParser from "cookie-parser";
 import { doubleCsrf } from "csrf-csrf";
 import cors from "cors";
 import { renderReact } from "./utils/build/renderReact";
+import { Settings } from "./models/settings";
 
 // import fs from "fs";
 // import * as React from "react";
@@ -80,10 +81,11 @@ const {
 });
 app.use(cookieParser(COOKIES_SECRET));
 
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use(async (req: Request, res: Response, next: NextFunction) => {
   res.locals.isAuthenticated = req.session.isAuthenticated;
   res.locals.user = req.session.user;
   res.locals.csrfToken = generateToken(req, res);
+  res.locals.settings = await Settings.getSettings();
   next();
 });
 app.use(doubleCsrfProtection);

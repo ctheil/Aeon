@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { db } from "../db";
 import * as schema from "../db/schema";
-import HomePage from "../../app/home/HomePage";
+import HomePage from "../views/home/HomePage";
 import { renderReact } from "../utils/build/renderReact";
 
 export const getWelcome = async (

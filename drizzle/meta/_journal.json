@@ -57,6 +57,34 @@
       "when": 1707616966170,
       "tag": "0007_awesome_maria_hill",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1707776198082,
+      "tag": "0008_eager_avengers",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1707777078519,
+      "tag": "0009_premium_the_call",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1707777586581,
+      "tag": "0010_open_wraith",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1707778386331,
+      "tag": "0011_complete_firebrand",
+      "breakpoints": true
     }
   ]
 }
