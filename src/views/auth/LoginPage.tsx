@@ -16,7 +16,7 @@ const LoginPage: React.FC<BaseProps & LoginProps> = (props) => {
     <div className="min-h-screen bg-l-bg dark:bg-d-bg">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg">
-          <h1 className="text-center text-2xl font-thin text-l-p-500 dark:text-d-p-500 sm:text-3xl ">
+          <h1 className="text-center text-2xl font-thin text-l-text dark:text-d-text sm:text-3xl ">
             Welcome back
           </h1>
           <p className="mx-auto mt-4 max-w-md text-center text-gray-500 dark:text-gray-300">

@@ -82,7 +82,7 @@ export const settings = pgTable("settings", {
   typography: json("typography").$type<Typography>(),
   company: text("company_name"),
   onboarding: boolean("onboarding").default(true),
-  updatedAt: timestamp("updated_at"),
+  // updatedAt: timestamp("updated_at"),
 });
 
 export type Settings = typeof settings.$inferSelect;
