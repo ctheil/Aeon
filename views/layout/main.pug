@@ -2,7 +2,7 @@ include ../mixins/alerts.pug
 doctype html
 html(lang="en", class="bg-l-bg dark:bg-d-bg text-l-text-a dark:text-d-text-a antialiased leading-tight" )
     head
-        style(type="text/css")
+
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(name="csrf-token" content=`${csrfToken}`)
@@ -14,6 +14,10 @@ html(lang="en", class="bg-l-bg dark:bg-d-bg text-l-text-a dark:text-d-text-a ant
         script(defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js")
         block styles
     body(class="min-h-screen font-family-robotto") 
+        style(type="text/css").
+            // USER STYLE OVERRIDES
+            :root {
+            }
         block content 
         
         block foot

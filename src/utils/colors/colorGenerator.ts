@@ -60,7 +60,7 @@ export const generatePrimaryPalette = (
   return palette;
 };
 type NeutralPalette = {
-  backrground: string;
+  background: string;
   backgroundAccent: string;
   text: string;
   textAccent: string;
@@ -83,7 +83,7 @@ export const generateNeutralPalette = (
     // use darkened textAccent for normal text color
     const textColor = chroma(textAccent).darken();
     return {
-      backrground: background.hex(),
+      background: background.hex(),
       backgroundAccent: bShade.hex(),
       text: textColor.hex(),
       textAccent: textAccent,
@@ -97,7 +97,7 @@ export const generateNeutralPalette = (
   );
   const textColor = chroma(textAccent).brighten();
   return {
-    backrground: background.hex(),
+    background: background.hex(),
     backgroundAccent: bShade.hex(),
     text: textColor.hex(),
     textAccent: textAccent,
@@ -171,4 +171,89 @@ export const generatePalette = (
   };
 };
 
-console.log(generatePalette("#cfb87d", "#eeeeee", "#232323"));
+type Palette = {
+  [key: string]: string;
+};
+
+const classNameMap: { [key: string]: { [key: string]: string } } = {
+  light: {
+    pShade: "--l-p-600",
+    primary: "--l-p-500",
+    pTint: "--l-p-400",
+    pBg: "--l-p-bg",
+    sShade: "--l-s-600",
+    secondary: "--l-s-500",
+    sTint: "--l-s-400",
+    sBg: "--l-s-bg",
+
+    background: "--l-bg",
+    backgroundAccent: "--l-bg-a",
+    text: "--l-text",
+    textAccent: "--l-text-a",
+  },
+  dark: {
+    pShade: "--d-p-600",
+    primary: "--d-p-500",
+    pTint: "--d-p-400",
+    pBg: "--d-p-bg",
+    sShade: "--d-s-600",
+    secondary: "--d-s-500",
+    sTint: "--d-s-400",
+    sBg: "--d-s-bg",
+
+    background: "--d-bg",
+    backgroundAccent: "--d-bg-a",
+    text: "--d-text",
+    textAccent: "--d-text-a",
+  },
+};
+const returnCSSMappedColors = (
+  keys: string[],
+  obj: { [key: string]: string },
+  type: "light" | "dark",
+) => {
+  return keys.map((k: string) => {
+    const className = classNameMap[type][k];
+    const cssHslColor = chroma(obj[k])
+      .hsl()
+      .map((c, i) => {
+        if (i === 0) {
+          return c || 0;
+        }
+        if (i > 2) return "";
+        return `${c * 100}%`;
+      })
+      .join(" ");
+    return `${className}: ${cssHslColor};`;
+  });
+};
+
+export const generateHSLPalette = (
+  primaryColor: string,
+  lightBackground: string,
+  darkBackground: string,
+) => {
+  const palette = generatePalette(
+    primaryColor,
+    lightBackground,
+    darkBackground,
+  );
+  const light = { ...palette.primaryLightPalette, ...palette.light };
+  const dark = { ...palette.primaryDarkPalette, ...palette.dark };
+
+  const lKeys = Object.keys(light);
+  const dKeys = Object.keys(dark);
+
+  const lHsl = returnCSSMappedColors(lKeys, light, "light");
+  const dHsl = returnCSSMappedColors(dKeys, dark, "dark");
+  return {
+    light: lHsl,
+    dark: dHsl,
+  };
+};
+
+const { light, dark } = generateHSLPalette("#cfb87d", "#eeeeee", "#232323");
+console.log(light);
+console.log(dark);
+
+console.log(chroma("#cfb87d").hsl());
