@@ -16,6 +16,8 @@
   "description": "",
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/chroma-js": "^2.4.4",
+    "@types/connect-flash": "^0.0.40",
     "@types/connect-pg-simple": "^7.0.3",
     "@types/cookie-parser": "^1.4.6",
     "@types/cors": "^2.8.17",
@@ -34,6 +36,8 @@
   "dependencies": {
     "autoprefixer": "^10.4.17",
     "bcrypt": "^5.1.1",
+    "chroma-js": "^2.4.2",
+    "connect-flash": "^0.1.1",
     "connect-pg-simple": "^9.0.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

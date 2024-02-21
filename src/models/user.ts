@@ -4,31 +4,35 @@ import bcrypt from "bcrypt";
 import { Err } from "../utils/errors/Err";
 
 export class User {
-  username: string;
+  firstName: string;
+  lastName: string;
   email: string;
   accountType: schema.AccountType;
   private hashedPassword: string;
 
   constructor(
-    username: string,
+    firstName: string,
+    lastName: string,
     email: string,
     hashedPassword: string,
     accountType?: schema.AccountType,
   ) {
-    this.username = username;
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.email = email;
     this.hashedPassword = hashedPassword;
     this.accountType = accountType || "unassigned";
   }
 
   public static createNewUser(
-    username: string,
+    firstName: string,
+    lastName: string,
     email: string,
     password: string,
     accountType: schema.AccountType,
   ): User {
     const hashed = User.hashPassword(password);
-    return new User(username, email, hashed, accountType);
+    return new User(firstName, lastName, email, hashed, accountType);
   }
 
   static async findByEmail(email: string): Promise<User | undefined> {
@@ -37,7 +41,8 @@ export class User {
     });
     if (!user) return;
     return new User(
-      user.userName,
+      user.firstName,
+      user.lastName,
       user.email,
       user.hashedPassword,
       user.accountType,
@@ -51,7 +56,8 @@ export class User {
     });
     if (!user) return;
     return new User(
-      user.userName,
+      user.firstName,
+      user.lastName,
       user.email,
       user.hashedPassword,
       user.accountType,
@@ -63,7 +69,8 @@ export class User {
       return await db.insert(schema.users).values({
         email: this.email,
         hashedPassword: this.hashedPassword,
-        userName: this.username,
+        firstName: this.firstName,
+        lastName: this.lastName,
         accountType: this.accountType,
       });
     } catch (err) {

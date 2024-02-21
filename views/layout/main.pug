@@ -1,17 +1,23 @@
 include ../mixins/alerts.pug
 doctype html
-html(lang="en", class="bg-white dark:bg-slate-800 text-slate-900 dark:text-white antialiased leading-tight" )
+html(lang="en", class="bg-l-neutral-dim dark:bg-d-neutral-dim text-l-text-a dark:text-d-text-a antialiased leading-tight" )
     head
+
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(name="csrf-token" content=`${csrfToken}`)
         title #{pageTitle}
         link(rel="stylesheet", href="/styles/output.css")
+        link(rel="stylesheet", href="/styles/global.css")
         link(rel="stylesheet" href="https://rsms.me/inter/inter.css")
         script(src="/scripts/htmx.js")
         script(defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js")
         block styles
-    body(class="min-h-screen ") 
+    body(class="min-h-screen font-family-robotto") 
+        style(type="text/css").
+            // USER STYLE OVERRIDES
+            :root {
+            }
         block content 
         
         block foot

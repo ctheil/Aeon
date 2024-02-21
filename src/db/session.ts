@@ -9,7 +9,8 @@ declare module "express-session" {
     isAuthenticated: boolean;
     csrfSecret: string;
     user: {
-      username: string;
+      firstName: string;
+      lastName: string;
       email: string;
       accountType: string;
     };

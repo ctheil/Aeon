@@ -1,0 +1,13 @@
+include ./progress-step.pug
+
+mixin progress()
+    div(class="flex-1")
+      h2( class="sr-only") Steps
+      div
+        - const steps = [{name: "Organization", completed: false, icon: ""}, {name: "Schemas", completed: false, icon: ""}, {name: "Schemas", completed: false, icon: ""}]
+        - const progress = `1/${steps.length - steps.filter(s => s.completed).length}`
+        div( class="overflow-hidden rounded-full bg-l-bg-a dark:bg-d-bg-a" )
+            div(class=`h-2 w-${progress}  rounded-full bg-l-p-500 dark:bg-d-p-500` )
+        ol( class=`mt-4 grid grid-cols-${steps.length} text-sm font-medium text-l-p-600 dark:text-d-p-600`)
+            each step in steps
+                +progressStep(step)

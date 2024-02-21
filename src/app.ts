@@ -9,6 +9,7 @@ import { store } from "./db/session";
 import dashboardRouter from "./routes/dashboard";
 import cookieParser from "cookie-parser";
 import { doubleCsrf } from "csrf-csrf";
+import flash from "connect-flash"
 import cors from "cors";
 dotenv.config();
 
@@ -51,6 +52,8 @@ app.use(
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000, secure: false }, // 30 days
   }),
 );
+
+app.use(flash())
 /*
  *NOTE: CSRF Protection
 
@@ -76,6 +79,18 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   res.locals.isAuthenticated = req.session.isAuthenticated;
   res.locals.user = req.session.user;
   res.locals.csrfToken = generateToken(req, res);
+  res.locals.sideBar = [
+    {
+      name: "Home",
+      href: "/",
+      icon: "homeIcon",
+    },
+    {
+      name: "Settings",
+      href: "/v1/admin/dashboard/settings",
+      icon: "settingsCog",
+    },
+  ];
   next();
 });
 app.use(doubleCsrfProtection);

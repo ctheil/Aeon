@@ -1,0 +1,17 @@
+mixin input(name, friendlyName, type, placeholder, value, error)
+    - const hasError = error?.[name]
+    div
+        label(for="email" class="sr-only") #{friendlyName}
+        div(class="relative")
+            input(
+                type=`${type}`
+                name=`${name}`
+                value=`${value || "" }`
+                class=`${hasError && 'border-l-error dark:border-d-error'}
+                w-full rounded-md py-2 pl-4  placeholder:text-l-outline  dark:placeholder:text-d-outline text-sm shadow-sm bg-l-neutrawl bg-l-neutral-dim dark:bg-d-neutral-dim border border-l-outline-var dark:border-d-outline-var`
+                placeholder=`${placeholder}`
+                )
+            if hasError
+                p(class="text-l-error dark:text-d-error text-xs ml-2") #{error[name].msg}
+
+

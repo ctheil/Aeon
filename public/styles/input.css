@@ -3,3 +3,11 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+:root {
+  --primary-400: "#cfb87d";
+  --l-bg: 0 0% 93%;
+  --l-bg-a: 0 0% 74%;
+  --l-text: 0 0% 6%;
+  --l-text-a: 0 0% 21%;
+}
