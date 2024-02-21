@@ -37,7 +37,7 @@ export const renderReact = <P extends {}>(
 
   try {
     fs.readFile(
-      path.resolve("./public/html/index.html"),
+      path.resolve("./dist/bundle/index.html"),
       "utf8",
       (err, data) => {
         if (err) {

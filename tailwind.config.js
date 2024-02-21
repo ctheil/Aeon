@@ -30,6 +30,14 @@ module.exports = {
         "d-bg-a": "var(--d-bg-a)",
         "d-text": "var(--d-text)",
         "d-text-a": "var(--d-text-a)",
+
+        //
+        //POST PROTOTYPE
+        "d-p": "var(--d-primary)",
+        "d-on-p": "var(--d-on-primary)",
+        "d-neutral-dim": "var(--d-neutral-dim)",
+        "d-text-on-neutral-dim": "var( --d-body-on-neutral-dim )",
+        "d-outline-v": "var(--d-outline-variant)",
       },
     },
   },
