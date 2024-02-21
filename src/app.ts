@@ -9,6 +9,7 @@ import { store } from "./db/session";
 import dashboardRouter from "./routes/dashboard";
 import cookieParser from "cookie-parser";
 import { doubleCsrf } from "csrf-csrf";
+import flash from "connect-flash"
 import cors from "cors";
 dotenv.config();
 
@@ -51,6 +52,8 @@ app.use(
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000, secure: false }, // 30 days
   }),
 );
+
+app.use(flash())
 /*
  *NOTE: CSRF Protection
 

@@ -16,18 +16,26 @@ authRouter.get("/login", getLogin);
 authRouter.post(
   "/signup",
   body("email").trim().notEmpty().isEmail().withMessage("Email is required."),
-  body("username").trim().notEmpty().withMessage("Username is required."),
   body("password")
     .trim()
     .notEmpty()
     .isLength({ min: 6 })
-    .withMessage("Username is required."),
-  body("confirm-password").custom((value, { req }) => {
-    return value === req.body.password;
-  }),
+    .withMessage("Password is required and must be at least 6 characters."),
+  body("confirm-password")
+    .custom((value, { req }) => {
+      return value === req.body.password;
+    })
+    .withMessage("Passwords do not match."),
+  body("firstName").trim().notEmpty().withMessage("First Name is required"),
+  body("lastName").trim().notEmpty().withMessage("Last Name is required"),
   postSignup,
 );
-authRouter.post("/login", postLogin);
+authRouter.post(
+  "/login",
+  body("email").trim().notEmpty().isEmail(),
+  body("password").trim().notEmpty(),
+  postLogin,
+);
 authRouter.post("/logout", postLogout);
 
 export default authRouter;

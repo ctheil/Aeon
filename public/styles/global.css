@@ -87,6 +87,83 @@
   --d-bg-a: 0 0% 29.411764705882355% ;
   --d-text: 0 0% 100% ;
   --d-text-a: 0 0% 84.31372549019608% ;
+
+    --d-primary: 258, 100%, 87%;
+    --d-on-primary: 259, 58%, 28%;
+
+    --d-secondary: 343, 63%, 83%;
+    --d-on-secondary: 338, 33%, 22%;
+
+    --d-neutral-surface: 260, 14%, 8%;
+    --d-neutral-dim: 260, 14%, 8%;
+    --d-neutral-bright: 270, 5%, 23%;
+
+    --d-error: 3, 70%, 83%;
+    --d-on-error: 3, 71%, 22%;
+
+    --d-primary-container: 257, 43%, 38%;
+    --d-on-primary-container: 263, 100%, 93%;
+
+    --d-secondary-container: 341, 25%, 31%;
+    --d-on-secondary-container: 342, 100%, 92%;
+
+    --d-error-container: 3, 71%, 32%;
+    --d-on-error-container: 4, 71%, 92%;
+
+    --d-surface-lowest: 260, 19%, 6%;
+    --d-surface-low: 264, 8%, 12%;
+    --d-surface: 257, 10%, 14%;
+    --d-surface-high: 257, 8%, 17%;
+    --d-surface-highest: 257, 6%, 22%;
+
+    --d-on-surface: 280, 17%, 90%;
+    --d-on-surface-var: 270, 11%, 79%;
+
+    --d-outline: 264, 5%, 58%;
+    --d-outline-var: 264, 7%, 29%;
+
+    --d-body-on-neutral-dim: 254, 9%, 52%;
+    --d-body-on-neutral-bright: 0, 0%, 64%;
+
+
+    --l-primary: 256, 34%, 48%;
+    --l-on-primary: 0, 0%, 100%;
+
+    --l-secondary: 340, 21%, 41%;
+    --l-on-secondary: 0, 0%, 100%;
+
+    --l-neutral-surface: 293, 100%, 98% ;
+    --l-neutral-dim: 280, 13%, 86%;
+    --l-neutral-bright: 293, 100%, 98%;
+
+    --l-error: 3, 71%, 41%;
+    --l-on-error: 0, 0%, 100%;
+
+    --l-primary-container: 263, 100%, 93%;
+    --l-on-primary-container: 261, 100%, 18%;
+
+    --l-secondary-container: 342, 100%, 92%;
+    --l-on-secondary-container: 338, 48%, 13%;
+
+    --l-error-container: 4, 71%, 92%;
+    --l-on-error-container: 3, 71%, 15%;
+
+    --l-surface-lowest: 0, 0%, 100%;
+    --l-surface-low: 278, 44%, 96%;
+    --l-surface: 276, 38%, 95%;
+    --l-surface-high: 276, 25%, 92%;
+    --l-surface-highest:280, 17%, 90% ;
+
+    --l-on-surface: 264, 8%, 12%;
+    --l-on-surface-var: 264, 7%, 29%;
+
+    --l-outline: 270, 4%, 47%;
+    --l-outline-var: 270, 11%, 79%;
+
+    --l-body-on-neutral-dim: 256, 16%, 33%;
+    --l-body-on-neutral-bright: 252, 16%, 50%;
+
+    
 }
 
 /* --l-p-600: #210900; */

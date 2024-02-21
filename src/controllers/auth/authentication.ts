@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { User } from "../../models/user";
 import { Err } from "../../utils/errors/Err";
 import { sendHTMXRedirect } from "../../utils/sendHTMXRedirect";
+import { ValidationError, validationResult } from "express-validator";
+import errorFormatter from "../../utils/errors/validationErrorFormatter";
 
 export const getWelcome = (req: Request, res: Response, next: NextFunction) => {
   if (req.session.isAuthenticated) {
@@ -9,6 +11,7 @@ export const getWelcome = (req: Request, res: Response, next: NextFunction) => {
   }
   return res.render("auth/welcome", {
     pageTitle: "Welcome",
+    errorMessage: req.flash("error"),
   });
 };
 
@@ -16,8 +19,11 @@ export const getLogin = (req: Request, res: Response, next: NextFunction) => {
   if (req.session.isAuthenticated) {
     return res.redirect("/");
   }
+  const error = req.flash("error");
+
   return res.render("auth/login", {
     pageTitle: "Login",
+    error: error,
   });
 };
 export const postSignup = async (
@@ -26,8 +32,17 @@ export const postSignup = async (
   next: NextFunction,
 ) => {
   const { firstName, lastName, email, password } = req.body;
-  if (!firstName || !lastName || !email || !password) {
-    return res.status(422).send("No credentials provided");
+  const errors = validationResult(req);
+  console.log("[ERRORS: ]", errors.isEmpty(), errors.array());
+  if (!errors.isEmpty()) {
+    const inputErrors = errorFormatter(errors.array() as ValidationError[]);
+    console.log(inputErrors);
+    console.log("[inputErrors: ]", inputErrors);
+    return res.render("auth/welcome", {
+      pageTitle: "Welcome",
+      errors: req.flash("error"),
+      inputErrors,
+    });
   }
   if (req.session.isAuthenticated) {
     return res.redirect("/");
@@ -68,22 +83,26 @@ export const postLogin = async (
   next: NextFunction,
 ) => {
   const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(422).send("No credentials provided");
+  const error = validationResult(req);
+  if (!error.isEmpty()) {
+    return res.render("auth/login", {
+      pageTitle: "Login",
+      inputErrors: errorFormatter(error.array() as ValidationError[]),
+    });
   }
   try {
     const user = await User.findByEmail(email);
 
     if (!user) {
-      const error = new Err("Invalid email or password");
-      error.setStatus(404);
-      return next(error);
+      req.flash("error", "invalid email or password");
+      console.log("redirecting... no user");
+      return res.redirect("/v1/auth/login");
     }
     const comparePassword = user.compareHash(password);
     if (!comparePassword) {
-      const error = new Err("Invalid email or password");
-      error.setStatus(404);
-      return next(error);
+      console.log("redirecting... invalid password");
+      req.flash("error", "invalid email or password");
+      return res.redirect("/v1/auth/login");
     }
     req.session.isAuthenticated = true;
     req.session.user = {
