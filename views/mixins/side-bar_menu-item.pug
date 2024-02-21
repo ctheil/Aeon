@@ -1,7 +1,7 @@
 include ./icons.pug
 
 mixin menuItemBottom(name)
-    span(class="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible") #{name}
+    span(class="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-l-surface-high dark:bg-d-surface-high px-2 py-1.5 text-xs font-medium text-l-on-surface dark:text-d-on-surface group-hover:visible") #{name}
 
 mixin menuIcon(icon)
     case icon
@@ -15,7 +15,7 @@ mixin menuItems(items)
     each item in items
         a(
         href=`${item.href}`
-        class=`group relative flex justify-center rounded px-2 py-1.5 ${item.active ? "text-l-s-500 dark:text-d-s-500 bg-l-s-bg dark:bg-d-s-bg" : "text-l-text-a dark:text-d-text-a hover:bg-l-bg-a dark:hover:bg-d-bg-a hover:text-l-text dark:hover:text-d-text"}`
+        class=`group relative flex justify-center rounded px-2 py-1.5 ${item.active ? "text-l-on-primary dark:text-d-on-primary bg-l-primary dark:bg-d-primary" : "text-l-text-a dark:text-d-text-a hover:bg-l-bg-a dark:hover:bg-d-bg-a hover:text-l-text dark:hover:text-d-text"}`
         )
             +menuIcon(item.icon)            
             +menuItemBottom(item.name)

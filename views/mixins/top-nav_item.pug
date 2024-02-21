@@ -1,6 +1,6 @@
 mixin item(name, href, currentRoute) 
     - const isActive = currentRoute === href
     li
-        a(class=`${!isActive ? "text-l-text-a dark:text-d-text-a hover:text-l-text/50 dark:hover:text-d-text/50" : "rounded bg-l-p-bg dark:bg-d-p-bg p-2 text-l-p-500  dark:text-d-p-500"} transition ` href=`${href}`) #{name}
+        a(class=`${!isActive ? "text-l-primary dark:text-d-primary hover:text-l-primary/50 dark:hover:text-d-primary/50" : "rounded bg-l-primary dark:bg-d-primary p-2 text-l-on-primary dark:text-d-on-primary"} transition ` href=`${href}`) #{name}
 
 

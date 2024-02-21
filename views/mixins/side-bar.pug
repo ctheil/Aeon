@@ -2,26 +2,26 @@ include ./side-bar_menu-item.pug
 include ../icons/settings-cog.pug
 
 mixin sideBar(user, sideBar, csrfToken)
-    div(class="flex h-full fixed top-0 left-0 bottom-0  w-16 flex-col justify-between border-e border-l-bg-a dark:border-d-bg-a bg-l-bg dark:bg-d-bg")
+    div(class="flex h-full fixed top-0 left-0 bottom-0  w-16 flex-col justify-between border-e border-l-outline-var dark:border-d-outline-var bg-surface-lowest dark:bg-surface-lowest")
         div
             div( class="inline-flex size-16 items-center justify-center group relative" )
-                span( class="grid size-10 place-content-center rounded-lg bg-l-p-bg dark:bg-d-p-bg text-xs text-l-p-500 dark:text-d-p-500")
+                span( class="grid size-10 place-content-center rounded-lg bg-l-primary dark:bg-d-primary text-xs text-l-on-primary dark:text-d-on-primary")
                     | #{user.firstName[0].toUpperCase()}
                 
                 span(
                     class="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible whitespace-nowrap"
                     ) Hi #{user.firstName}
-            div( class="border-t dark:border-d-bg border-l-bg-a" )
+            div( class="border-t dark:border-d-outline-var/50 border-l-outline-var/50" )
                 div( class="px-2" )
                     div( class="py-4" )
                         +menuItems([ sideBar.active ])
-                    ul( class="space-y-1 border-t border-l-bg-a dark:border-d-bg-a pt-4" )
+                    ul( class="space-y-1 border-t border-l-outline-var dark:border-d-outline-var pt-4" )
                         li
                             +menuItems(sideBar.inactive)
-        div( class="sticky inset-x-0 bottom-0 border-t border-l-bg-a dark:border-d-bg-a bg-l-bg dark:bg-d-bg pb-2" )
+        div( class="sticky inset-x-0 bottom-0 border-t border-l-outline-var dark:border-d-outline-var bg-l-surface dark:bg-d-surface pb-2" )
             div
                 div( class="inline-flex size-16 items-center justify-center group relative" )
-                    span( class="grid size-10 place-content-center rounded-lg bg-l-p-bg dark:bg-d-p-bg text-xs text-l-p-500 dark:text-d-p-500")
+                    span( class="text-xs grid size-10 place-content-center rounded-lg bg-l-primary dark:bg-d-primary text-xs text-l-on-primary dark:text-d-on-primary")
                         | #{user.firstName.toUpperCase()}
                     
                     span(

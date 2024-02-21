@@ -4,7 +4,7 @@ include ../mixins/button.pug
 include ../mixins/logo.pug
 
 block content
-    - console.log(error)
+    - console.log(error, email, password)
     div(class="flex items-center content-center mx-auto h-screen  max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 border-l-outline-var dark:border-d-outline-var rounded bg-l-neutral-dim dark:bg-d-neutral-dim")
       div(class="mx-auto  max-w-lg border border-l-outline-var dark:border-d-outline-var rounded-md py-7 px-5 w-full")
          
@@ -16,8 +16,8 @@ block content
                 a(href="/v1/auth/signup" class="text-l-primary dark:text-d-primary link font-bold transition hover:opacity-75") Sign up
         form(action="/v1/auth/login" method="POST" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8")
           input(type="hidden" name="_csrf" value=`${csrfToken}`)
-          +input("email", "Email", "email", "Email", "", inputErrors)
-          +input("password", "Password", "password", "Password", "", inputErrors)
+          +input("email", "Email", "email", "Email", email, inputErrors)
+          +input("password", "Password", "password", "Password", password, inputErrors)
           if error
               p(class="text-l-error dark:text-d-error text-xs") #{error}
           div(class="pt-2")

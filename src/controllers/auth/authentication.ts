@@ -94,15 +94,21 @@ export const postLogin = async (
     const user = await User.findByEmail(email);
 
     if (!user) {
-      req.flash("error", "invalid email or password");
-      console.log("redirecting... no user");
-      return res.redirect("/v1/auth/login");
+    return res.render("auth/login", {
+      pageTitle: "Login",
+      error: "Invalid email or password.",
+      email: email,
+      password: password
+    });
     }
     const comparePassword = user.compareHash(password);
     if (!comparePassword) {
-      console.log("redirecting... invalid password");
-      req.flash("error", "invalid email or password");
-      return res.redirect("/v1/auth/login");
+    return res.render("auth/login", {
+      pageTitle: "Login",
+      error: "Invalid email or password.",
+      email: email,
+      password: password
+    });
     }
     req.session.isAuthenticated = true;
     req.session.user = {

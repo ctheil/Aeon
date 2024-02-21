@@ -988,6 +988,10 @@ video {
   border-color: hsl(var(--l-error));
 }
 
+.border-l-outline-var\/50 {
+  border-color: hsl(var(--l-outline-var) / 0.5);
+}
+
 .bg-blue-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
@@ -1056,6 +1060,14 @@ video {
 
 .bg-l-neutral-surface {
   background-color: hsl(var(--l-neutral-surface));
+}
+
+.bg-l-surface {
+  background-color: hsl(var(--l-surface));
+}
+
+.bg-l-surface-high {
+  background-color: hsl(var(--l-surface-high));
 }
 
 .fill-indigo-700 {
@@ -1338,6 +1350,10 @@ video {
   color: hsl(var(--l-text-a) / 0.75);
 }
 
+.text-l-on-surface {
+  color: hsl(var(--l-on-surface));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -1478,6 +1494,10 @@ video {
 
 .hover\:text-l-text\/50:hover {
   color: hsl(var(--l-text) / 0.5);
+}
+
+.hover\:text-l-primary\/50:hover {
+  color: hsl(var(--l-primary) / 0.5);
 }
 
 .hover\:opacity-75:hover {
@@ -1684,6 +1704,10 @@ video {
     border-color: hsl(var(--d-error));
   }
 
+  .dark\:border-d-outline-var\/50 {
+    border-color: hsl(var(--d-outline-var) / 0.5);
+  }
+
   .dark\:bg-d-bg {
     background-color: hsl( var(--d-bg) );
   }
@@ -1738,6 +1762,14 @@ video {
 
   .dark\:bg-d-neutral-surface {
     background-color: hsl(var(--d-neutral-surface));
+  }
+
+  .dark\:bg-d-surface {
+    background-color: hsl(var(--d-surface));
+  }
+
+  .dark\:bg-d-surface-high {
+    background-color: hsl(var(--d-surface-high));
   }
 
   .dark\:stroke-indigo-400 {
@@ -1803,6 +1835,14 @@ video {
     color: hsl(var(--d-text-a) / 0.75);
   }
 
+  .dark\:text-d-on-surface {
+    color: hsl(var(--d-on-surface));
+  }
+
+  .dark\:text-l-on-primary {
+    color: hsl(var(--l-on-primary));
+  }
+
   .dark\:placeholder\:text-d-body-nd::-moz-placeholder {
     color: hsl(var(--d-body-on-neutral-dim));
   }
@@ -1860,6 +1900,10 @@ video {
   .dark\:hover\:text-white:hover {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+
+  .dark\:hover\:text-d-primary\/50:hover {
+    color: hsl(var(--d-primary) / 0.5);
   }
 
   .dark\:focus\:ring-offset-gray-900:focus {
