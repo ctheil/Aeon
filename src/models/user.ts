@@ -9,6 +9,9 @@ export class User {
   email: string;
   accountType: schema.AccountType;
   private hashedPassword: string;
+  verificationToken?: string;
+  resetToken?: string;
+  resetTokenExpiration?: Date;
 
   constructor(
     firstName: string,

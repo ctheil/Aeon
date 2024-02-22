@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { db } from "../db";
 import * as schema from "../db/schema";
+import sendVerificationEmail from "../utils/mail/sendVerificationEmail";
 
 export const getWelcome = async (
   req: Request,

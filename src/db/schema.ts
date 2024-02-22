@@ -1,4 +1,4 @@
-import { pgTable, serial, text, pgEnum, json } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, pgEnum, json, date } from "drizzle-orm/pg-core";
 
 export const accountTypeEnum = pgEnum("account_type", [
   "owner",
@@ -15,6 +15,9 @@ export const users = pgTable("users", {
   lastName: text("last_name").notNull(),
   hashedPassword: text("hashed_password").notNull(),
   accountType: accountTypeEnum("account_type").notNull(),
+  resetToken: text("reset_token"),
+  resetTokenExpiration: date("reset_token_expiration"),
+  verificationToken: text("verification_token")
 });
 
 export type User = typeof users.$inferSelect;
